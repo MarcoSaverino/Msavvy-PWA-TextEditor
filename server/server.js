@@ -1,12 +1,13 @@
 const express = require('express');
-
+const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(express.static('../client/dist'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Serve static files from the "client/dist" directory
+app.use('/dist', express.static(path.join(__dirname, '../client/dist')));
 
-require('./routes/htmlRoutes')(app);
+// If you're using a single page app routing
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
 
-app.listen(PORT, () => console.log(`Now listening on port: ${PORT}`));
+app.listen(3000);
