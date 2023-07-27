@@ -63,7 +63,7 @@ THEN I should have proper build scripts for a webpack application
 
 ## [Final Result](#table-of-contents)
 
-![jate](../Msavvy-PWA-TextEditor/Screenshots/Jate.PNG)
+![jate](./Screenshots/Jate.PNG)
 ![service-worker](./Screenshots/Service-worker.PNG)
 ![manifest-app](./Screenshots/Manifest.PNG)
 
