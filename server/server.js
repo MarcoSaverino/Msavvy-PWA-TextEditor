@@ -10,4 +10,9 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.listen(3000);
+// Use Heroku's port if it's available, or default to 3000 for local development
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`App is running on port ${port}`);
+});
