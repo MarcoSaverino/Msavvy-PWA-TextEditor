@@ -1,18 +1,15 @@
 const express = require('express');
 const path = require('path');
+
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Serve static files from the "client/dist" directory
-app.use('/dist', express.static(path.join(__dirname, '../client/dist')));
+const distPath = path.resolve(__dirname, '../client/dist');
+app.use(express.static(distPath));
 
-// If you're using a single page app routing
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-});
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// Use Heroku's port if it's available, or default to 3000 for local development
-const port = process.env.PORT || 3000;
+require('./routes/htmlRoutes')(app);
 
-app.listen(port, () => {
-    console.log(`App is running on port ${port}`);
-});
+app.listen(PORT, () => console.log(`Now listening on port: ${PORT}`));
